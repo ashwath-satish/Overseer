@@ -98,8 +98,8 @@ class Environment:
         self.last_fluctuation_time = pygame.time.get_ticks()
         self.fluctuation_interval = 500
         self.devices = {
-            "temp_up_device": pygame.Rect(700,80,60,40),
-            "temp_down_device": pygame.Rect(700,130,60,40),
+            "temp_up_device": pygame.Rect(900,80,60,40),
+            "temp_down_device": pygame.Rect(900,130,60,40),
             "hum_up_device": pygame.Rect(50, 400, 60, 40),
             "hum_down_device": pygame.Rect(50, 450, 60, 40)
         }
@@ -172,7 +172,7 @@ class Game:
                     self.environment.interact(event.pos)
 
     def update(self):
-        if not self.gameWon:
+        if not self.gameWon or self.gameLost:
             self.environment.fluctuate()
             self.character.update(self.environment.temperature, self.environment.humidity)
 
