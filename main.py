@@ -10,6 +10,7 @@ SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 700
 FPS = 60
 
+
 # Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -263,8 +264,11 @@ class Environment:
 class Game:
     def __init__(self):
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-        pygame.display.set_caption("Environmental Happiness Game")
+        pygame.display.set_caption("Overseer")
         self.clock = pygame.time.Clock()
+
+        self.monitor_image = pygame.image.load("monitor.png").convert_alpha()
+        self.monitor_image = pygame.transform.scale(self.monitor_image, (200, 200))
 
         self.character = Character(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)
         self.environment = Environment()
@@ -326,6 +330,10 @@ class Game:
 
         # Draw environment
         self.environment.draw(self.screen)
+
+        # Draw monitor to show the character playing a game in the environment that we control.
+        monitor_pos = (int(self.character.x - 100), int(self.character.y - 100))
+        self.screen.blit(self.monitor_image, monitor_pos)
 
         # Draw character
         self.character.draw(self.screen)
