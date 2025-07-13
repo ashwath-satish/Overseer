@@ -317,7 +317,7 @@ class Game:
         self.character.update(self.environment)
 
         # Check for win condition
-        if self.character.happiness >= 100 and not self.game_won:
+        if self.character.happiness >= 99.5 and not self.game_won:
             self.game_won = True
             self.win_time = pygame.time.get_ticks()
 
